@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_173715) do
+ActiveRecord::Schema.define(version: 2019_11_08_202339) do
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "continent"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
+    t.integer "user_id"
+    t.integer "location_id"
+    t.index ["location_id"], name: "index_posts_on_location_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "dob"
   end
 
 end
