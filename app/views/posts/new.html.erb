@@ -1,7 +1,7 @@
-<%= form_with model: @post do |f|%>
+<%= form_with id: "Create post", model: @post do |f|%>
   <%= label_tag(:title, "Blog Title")%>
   <%= text_field_tag(:title) %>
   <%= label_tag(:content, "Blog Content")%>
   <%= text_field_tag(:content) %>
-  <%= submit_tag("Submit") %>
+  <%= submit_tag("Submit")%>
 <%end%>
