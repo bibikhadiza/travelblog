@@ -1,19 +1,29 @@
 window.addEventListener('load', function() {
   let title = document.getElementById('title');
   let content = document.getElementById('content');
-  document.getElementById('Create post').onsubmit = () =>{
-    var createPost = (input) => JSON.stringify({
-    query:
-      `mutation {
-        createPost(input: ${input}) {
-          post {
-            title
-            content
-          }
-        }
-      }`
-    })
+  document.getElementById('Create post').onsubmit = (event) =>{
+    event.preventDefault()
+    event.stopPropagation()
+    var createPost = (input) => {
+      debugger;
+      return JSON.stringify({
+        query:
+          `mutation {
+            createPost(input: {
+              title: "${input.title.value}"
+              content: "${input.content.value}"
+            }) {
+              post {
+                title
+                content
+              }
+            }
+          }`
+      }
+    )
+  }
 
+    debugger;
     fetch('/graphql', {
       method: 'POST',
       body: createPost({title, content}),
@@ -21,7 +31,7 @@ window.addEventListener('load', function() {
         'Content-Type': 'application/json'
       }
     })
+    return false
   }
-
 });
 
