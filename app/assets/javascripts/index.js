@@ -12,6 +12,8 @@ window.addEventListener('load', function() {
             createPost(input: {
               title: "${input.title.value}"
               content: "${input.content.value}"
+              userId: "2"
+              locationId: "1"
             }) {
               post {
                 title
@@ -23,7 +25,6 @@ window.addEventListener('load', function() {
     )
   }
 
-    debugger;
     fetch('/graphql', {
       method: 'POST',
       body: createPost({title, content}),
